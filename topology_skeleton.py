@@ -28,7 +28,7 @@ n = 10
 d = 3
 host_range = 3 * n
 graph = nx.random_regular_graph(d, n)
-net = construct_mininet_from_networkx(graph, host_range)
+net = construct_mininet_from_networkx(graph)
 
 # START Mininet
 
