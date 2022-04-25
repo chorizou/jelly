@@ -15,7 +15,7 @@ def construct_mininet_from_networkx(graph, host_range):
     for n in graph.nodes:
         net.addSwitch("s_%s" % n)
         # Add single host on designated switches
-        if int(n) in host_range:
+        if int(n) in list(host_range):
             net.addHost("h%s" % n)
             # directly add the link between hosts and their gateways
             net.addLink("s_%s" % n, "h%s" % n)
@@ -28,7 +28,7 @@ n = 10
 d = 3
 host_range = 3 * n
 graph = nx.random_regular_graph(d, n)
-net = construct_mininet_from_networkx(graph)
+net = construct_mininet_from_networkx(graph, host_range)
 
 # START Mininet
 
