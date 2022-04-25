@@ -1,4 +1,5 @@
 from mininet.net import Mininet
+from mininet.cli import CLI
 import networkx as nx
 
 def construct_mininet_from_networkx(graph, host_range):
@@ -22,3 +23,17 @@ def construct_mininet_from_networkx(graph, host_range):
     for (n1, n2) in graph.edges:
         net.addLink('s_%s' % n1,'s_%s' % n2)
     return net
+
+n = 10
+d = 3
+host_range = 3 * n
+graph = nx.random_regular_graph(d, n)
+net = construct_mininet_from_networkx(graph, host_range)
+
+# START Mininet
+
+net.start()
+CLI(net)
+net.stop()
+
+# EXIT Mininet
