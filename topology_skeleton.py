@@ -1,5 +1,6 @@
 from mininet.net import Mininet
 from mininet.cli import CLI
+from mininet.node import RemoteController
 import networkx as nx
 
 def construct_mininet_from_networkx(graph, host_range):
@@ -22,6 +23,8 @@ def construct_mininet_from_networkx(graph, host_range):
     # Connect your switches to each other as defined in networkx graph
     for (n1, n2) in graph.edges:
         net.addLink('s_%s' % n1,'s_%s' % n2)
+
+
     return net
 
 n = 10
@@ -29,6 +32,9 @@ d = 3
 host_range = 3 * n
 graph = nx.random_regular_graph(d, n)
 net = construct_mininet_from_networkx(graph, host_range)
+
+# ADDING COTROLLER    
+net.addController("c0",controller=RemoteController,ip="127.0.0.1",port=6633)
 
 # START Mininet
 
